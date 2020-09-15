@@ -1,0 +1,37 @@
+﻿@model RS1_Ispit_asp.net_core.ViewModels.UrediUcenikaVM
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form id="forma">
+            <input asp-for="MaturskiIspitStavkaId" hidden />
+            <div class="form-group">
+                <label asp-for="Ucenik" class="control-label"></label>
+                <input asp-for="Ucenik" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Bodovi" class="control-label"></label>
+                <input asp-for="Bodovi" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <input id="snimi" value="Snimi" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+<script>
+    $("#snimi").click(function () {
+        $.ajax({
+            type: "POST",
+            url: "/Nastava/UrediUcenikaSnimi",
+            data: $("#forma").serialize(),
+            success: function (result) {
+                $("#stavke").html(result);
+            }
+        });
+
+    });
+</script>
+
+

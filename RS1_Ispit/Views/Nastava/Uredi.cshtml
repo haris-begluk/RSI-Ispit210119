@@ -1,0 +1,46 @@
+﻿@model RS1_Ispit_asp.net_core.ViewModels.MaturskiIspitUrediVM
+
+@{
+    ViewData["Title"] = "Uredi";
+}
+
+<h2>Uredi</h2>
+
+<h4>MaturskiIspitUrediVM</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="UrediSnimi">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input asp-for="MaturskiIspitId" hidden />
+
+            <div class="form-group">
+                <label asp-for="Predmet" class="control-label"></label>
+                <input asp-for="Predmet" class="form-control" />
+                <span asp-validation-for="Predmet" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Datum" class="control-label"></label>
+                <input asp-for="Datum" class="form-control" />
+                <span asp-validation-for="Datum" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Napomena" class="control-label"></label>
+                <input asp-for="Napomena" class="form-control" />
+                <span asp-validation-for="Napomena" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Snimi" class="btn btn-default" />
+            </div>
+        </form>
+    </div>
+</div>
+
+
+<div id="stavke"></div>
+<script>
+    $.get("/Nastava/AjaxStavke?id=@Model.MaturskiIspitId", function (result) {
+        $("#stavke").html(result);
+    });
+</script>
